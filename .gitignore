@@ -1,0 +1,10 @@
+# Claude Code local settings
+.claude/
+
+# Vim swap/backup files
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
