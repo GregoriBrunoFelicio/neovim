@@ -26,10 +26,9 @@ conform.setup({
         },
 })
 
-vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-        conform.format({
-                lsp_fallback = true,
-                async = false,
-                timeout_ms = 1000,
-        })
-end)
+local function fmt()
+        conform.format({ lsp_fallback = true, async = false, timeout_ms = 1000 })
+end
+
+vim.keymap.set({ "n", "v" }, "<leader>mp",   fmt)
+vim.keymap.set({ "n", "v" }, "<C-k>d",   fmt, { desc = "Format document" })
