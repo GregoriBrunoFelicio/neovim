@@ -10,6 +10,31 @@ vim.pack.add({
 local dap = require("dap")
 local dapui = require("dapui")
 
+-- C/C++ debugger (codelldb)
+dap.adapters.codelldb = {
+    type = "server",
+    port = "${port}",
+    executable = {
+        command = vim.fn.expand("$MASON/bin/codelldb"),
+        args = { "--port", "${port}" },
+    },
+}
+
+local c_config = {
+    {
+        name = "Launch",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+            return vim.fn.input("Executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+    },
+}
+dap.configurations.c = c_config
+dap.configurations.cpp = c_config
+
 require("dapui").setup()
 require("dap-cs").setup()
 require("nvim-dap-virtual-text").setup()

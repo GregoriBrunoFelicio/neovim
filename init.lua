@@ -22,3 +22,4 @@ require("plugins.nvim-autopairs")
 require("config.lsp")
 
 vim.lsp.enable("roslyn")
+vim.lsp.enable("clangd")
