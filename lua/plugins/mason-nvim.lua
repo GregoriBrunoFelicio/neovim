@@ -20,7 +20,6 @@ require("mason-tool-installer").setup({
                 "netcoredbg", -- .NET debugger
                 "csharpier", -- C# formatter
                 "clangd",    -- C/C++ LSP
-                "clang-format", -- C/C++ formatter
                 "codelldb",  -- C/C++ debugger
         },
 })

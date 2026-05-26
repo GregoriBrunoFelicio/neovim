@@ -24,6 +24,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
+-- Auto hover on cursor hold
+vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function()
+        vim.lsp.buf.hover()
+    end,
+})
+vim.o.updatetime = 500
+
 -- Visual Studio style diagnostic navigation
 vim.keymap.set("n", "<F8>",   vim.diagnostic.goto_next)
 vim.keymap.set("n", "<S-F8>", vim.diagnostic.goto_prev)
