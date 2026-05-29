@@ -9,7 +9,7 @@ vim.pack.add({
 vim.cmd("packadd nvim-treesitter")
 
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'cs', 'c', 'cpp' },
+    pattern = { 'cs', 'c', 'cpp', 'fsharp' },
     callback = function()
         vim.treesitter.start()
     end,

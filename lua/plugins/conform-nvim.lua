@@ -10,6 +10,7 @@ conform.setup({
                 cs = { "csharpier" },
                 c = { "clang-format" },
                 cpp = { "clang-format" },
+                fsharp = { "fantomas" },
         },
         formatters = {
                 csharpier = {
@@ -18,6 +19,11 @@ conform.setup({
                                 "format",
                                 "--write-stdout",
                         },
+                        to_stdin = true,
+                },
+                fantomas = {
+                        command = mason_bin .. "/fantomas",
+                        args = { "--stdin", "--stdout" },
                         to_stdin = true,
                 },
         },

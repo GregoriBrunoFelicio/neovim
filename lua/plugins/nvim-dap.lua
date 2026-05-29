@@ -35,6 +35,16 @@ local c_config = {
 dap.configurations.c = c_config
 dap.configurations.cpp = c_config
 
+-- F# uses the same netcoredbg as C# (dap-cs sets up cs, mirror to fsharp)
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "fsharp",
+    callback = function()
+        if not dap.configurations.fsharp then
+            dap.configurations.fsharp = dap.configurations.cs
+        end
+    end,
+})
+
 require("dapui").setup()
 require("dap-cs").setup()
 require("nvim-dap-virtual-text").setup()

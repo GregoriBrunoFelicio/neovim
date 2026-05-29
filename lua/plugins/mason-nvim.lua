@@ -20,10 +20,12 @@ require("mason-lspconfig").setup({
 })
 require("mason-tool-installer").setup({
         ensure_installed = {
-                "roslyn",    -- C# LSP
-                "netcoredbg", -- .NET debugger
-                "csharpier", -- C# formatter
-                "clangd",    -- C/C++ LSP
-                "codelldb",  -- C/C++ debugger
+                "roslyn",          -- C# LSP
+                "netcoredbg",      -- .NET debugger (C# and F#)
+                "csharpier",       -- C# formatter
+                "clangd",          -- C/C++ LSP
+                "codelldb",        -- C/C++ debugger
+                "fsautocomplete",  -- F# LSP
+                "fantomas",        -- F# formatter
         },
 })

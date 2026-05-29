@@ -22,3 +22,4 @@ require("plugins.nvim-autopairs")
 require("config.lsp")
 
 vim.lsp.enable("clangd")
+vim.lsp.enable("fsautocomplete")
