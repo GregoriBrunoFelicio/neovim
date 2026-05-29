@@ -1,3 +1,23 @@
+-- fsautocomplete sends VS Code-style <a href="command:fsharp..."> links in hover;
+-- strip them since Neovim renders markdown, not HTML.
+local _orig_hover = vim.lsp.handlers["textDocument/hover"]
+vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    if client and client.name == "fsautocomplete" and result and result.contents then
+        local val = type(result.contents) == "table" and result.contents.value or result.contents
+        if type(val) == "string" then
+            val = val:gsub("<a[^>]*>.-</a>", "")  -- remove full anchor tags + text
+            val = val:gsub("<[^>]+>", "")          -- remove any remaining stray tags
+            if type(result.contents) == "table" then
+                result.contents.value = val
+            else
+                result.contents = val
+            end
+        end
+    end
+    _orig_hover(err, result, ctx, config)
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
